@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Light Theme - Elegant White */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 43 54% 50%;
+    --primary-foreground: 0 0% 100%;
+    
+    --primary-glow: 43 54% 60%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 42%;
+
+    --accent: 43 54% 50%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 43 54% 50%;
+
+    --radius: 0.75rem;
+    
+    /* Shadows - Light Mode */
+    --shadow-glow: 0 4px 24px hsl(43 54% 50% / 0.15);
+    --shadow-gold: 0 8px 32px hsl(43 54% 50% / 0.12);
+    --shadow-elegant: 0 10px 40px -10px hsl(0 0% 0% / 0.1);
+  }
+
+  .dark {
+    /* Dark Theme - Luxury Gold */
+    --background: 0 0% 5%;
+    --foreground: 40 10% 97%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 40 10% 97%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 40 10% 97%;
+
+    --primary: 43 64% 53%;
+    --primary-foreground: 0 0% 10%;
+    
+    --primary-glow: 43 64% 63%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 40 10% 97%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 40 6% 85%;
+
+    --accent: 43 64% 53%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 43 64% 53%;
+    
+    /* Shadows - Dark Mode */
+    --shadow-glow: 0 0 40px hsl(43 64% 53% / 0.25);
+    --shadow-gold: 0 8px 32px hsl(43 64% 53% / 0.2);
+    --shadow-elegant: 0 10px 40px -10px hsl(43 64% 53% / 0.3);
+  }
+  
+  /* Gradients */
+  :root, .dark {
+    --gradient-gold: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary-glow)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--background)), hsl(var(--muted)));
+    
+    /* Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+  
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+/* Neon border & glow animation - Gold version */
+.neon-border {
+  border: 3px solid hsl(var(--accent));
+  box-shadow: 0 0 20px hsla(var(--accent), 0.6);
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px hsla(var(--accent), 0.6), 0 0 30px hsla(var(--accent), 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px hsla(var(--accent), 0.8), 0 0 50px hsla(var(--accent), 0.6);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s infinite ease-in-out;
+}

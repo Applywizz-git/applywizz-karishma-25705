@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Download } from "lucide-react";
-import profileImage from "/woman_images.avif";
+import profileImage from "/karishma_portfolio.png";
 
 const techStack = [
   "LLMs",

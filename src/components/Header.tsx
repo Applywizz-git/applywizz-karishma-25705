@@ -22,15 +22,14 @@ export const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
 
-      // Update active section
       const sections = navLinks.map(link => link.href.slice(1));
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
+          if (rect.top <= 150 && rect.bottom >= 150) {
             setActiveSection(section);
             break;
           }
@@ -45,7 +44,16 @@ export const Header = () => {
   const scrollToSection = (href: string) => {
     const element = document.getElementById(href.slice(1));
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
       setIsOpen(false);
     }
   };
@@ -54,75 +62,67 @@ export const Header = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${
         isScrolled
-          ? "bg-card/95 backdrop-blur-md shadow-elegant border-b border-border"
-          : "bg-card/50 backdrop-blur-sm"
+          ? "bg-black/80 backdrop-blur-xl border-b border-white/10 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+          : "bg-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-2xl font-poppins font-bold"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            onClick={() => scrollToSection("#home")}
+            className="text-2xl font-bold cursor-pointer group"
           >
-            <span className="bg-gradient-to-r from-accent to-primary-glow bg-clip-text text-transparent">
-              KARISHMA
-            </span>
+            <span className="gold-text-gradient tracking-tighter">KARISHMA</span>
+            <span className="text-white/40 group-hover:text-accent transition-colors ml-1">.AI</span>
           </motion.div>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link, index) => (
               <motion.button
                 key={link.name}
-                initial={{ opacity: 0, y: -20 }}
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
                 onClick={() => scrollToSection(link.href)}
-                className={`px-3 lg:px-4 py-2 rounded-lg text-sm lg:text-base font-medium transition-all relative group focus:outline-none focus:ring-2 focus:ring-accent/50 ${
+                className={`text-sm font-medium transition-all relative group uppercase tracking-widest ${
                   activeSection === link.href.slice(1)
                     ? "text-accent"
-                    : "text-foreground/70 hover:text-foreground"
+                    : "text-white/60 hover:text-white"
                 }`}
               >
                 {link.name}
                 <span
-                  className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-accent to-primary-glow transform origin-left transition-transform duration-300 ${
-                    activeSection === link.href.slice(1) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  className={`absolute -bottom-1 left-0 w-full h-[1px] bg-accent transition-transform duration-300 origin-right ${
+                    activeSection === link.href.slice(1) ? "scale-x-100 origin-left" : "scale-x-0 group-hover:scale-x-100 group-hover:origin-left"
                   }`}
                 />
               </motion.button>
             ))}
           </nav>
 
-          {/* Theme Toggle & Mobile Menu */}
-          <div className="flex items-center gap-2">
-            <motion.button
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 }}
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-muted hover:bg-muted/80 text-foreground transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent/50"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
-            </motion.button>
-
+          {/* Mobile Menu Toggle */}
+          <div className="flex items-center gap-4">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 text-foreground hover:text-accent transition-colors focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-lg"
-              aria-label="Toggle menu"
+              className="md:hidden p-2 text-white hover:text-accent transition-colors"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
+            
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => scrollToSection("#contact")}
+              className="hidden md:block px-5 py-2 bg-accent/10 border border-accent/30 text-accent text-xs font-bold rounded-full hover:bg-accent/20 transition-all uppercase tracking-widest"
+            >
+              Hire Me
+            </motion.button>
           </div>
         </div>
       </div>
@@ -131,25 +131,23 @@ export const Header = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-           className="absolute left-0 right-0 top-full bg-background/95 backdrop-blur-lg md:hidden z-40 border-b border-border shadow-md"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="absolute left-0 right-0 top-full bg-black/95 backdrop-blur-2xl md:hidden border-b border-white/10 overflow-hidden"
           >
-            <nav className="flex flex-col items-center justify-start py-6 gap-4 px-6">
+            <nav className="flex flex-col py-8 gap-6 px-8">
               {navLinks.map((link, index) => (
                 <motion.button
                   key={link.name}
-                  initial={{ opacity: 0, x: -50 }}
+                  initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 50 }}
                   transition={{ delay: 0.05 * index }}
                   onClick={() => scrollToSection(link.href)}
-                  className={`text-2xl font-poppins font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-accent/50 rounded-lg px-4 py-2 ${
+                  className={`text-xl font-bold text-left transition-all uppercase tracking-widest ${
                     activeSection === link.href.slice(1)
                       ? "text-accent"
-                      : "text-foreground/80 hover:text-foreground"
+                      : "text-white/60 hover:text-white"
                   }`}
                 >
                   {link.name}
@@ -162,3 +160,4 @@ export const Header = () => {
     </motion.header>
   );
 };
+

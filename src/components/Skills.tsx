@@ -62,7 +62,7 @@ const skillCategories = [
 
 export const Skills = () => {
   return (
-    <section id="skills" className="py-20 md:py-30 relative overflow-hidden bg-gradient-to-b from-card/20 to-background">
+    <section id="skills" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -71,13 +71,13 @@ export const Skills = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-           <h2 className="text-3xl sm:text-4xl md:text-5xl font-poppins font-bold mb-4">
-            Technical <span className="bg-gradient-to-r from-accent to-primary-glow bg-clip-text text-transparent">Skills</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
+            Technical <span className="gold-text-gradient">Ecosystem</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-gold mx-auto" />
+          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
@@ -85,28 +85,25 @@ export const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ scale: 1.03, y: -5 }}
-              className="bg-card/70 backdrop-blur-sm border border-border rounded-xl p-6 shadow-elegant hover:shadow-glow transition-all duration-300 group"
+              className="glass-card p-6 border-white/5 hover:border-accent/30 transition-all duration-500 group"
             >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                 <category.icon style={{ color: "#D4AF37" }} size={24} />
-
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 bg-accent/10 rounded-xl group-hover:bg-accent/20 transition-colors">
+                  <category.icon className="text-accent" size={24} />
                 </div>
-                <h3 className="text-xl font-poppins font-bold text-foreground">
+                <h3 className="text-sm font-bold text-white uppercase tracking-widest leading-tight">
                   {category.title}
                 </h3>
               </div>
 
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
-                  <motion.span
+                  <span
                     key={skill}
-                    whileHover={{ scale: 1.1 }}
-                    className="px-3 py-1.5 bg-muted/50 border border-border rounded-lg text-sm font-medium text-foreground/90 hover:bg-primary/10 hover:border-primary/30 transition-all duration-200"
+                    className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs font-medium text-white/60 hover:text-accent hover:border-accent/30 transition-all cursor-default"
                   >
                     {skill}
-                  </motion.span>
+                  </span>
                 ))}
               </div>
             </motion.div>
@@ -118,8 +115,8 @@ export const Skills = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-16 flex flex-wrap justify-center items-center gap-6 md:gap-8"
+          transition={{ duration: 1 }}
+          className="mt-24 pt-12 border-t border-white/5 flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700"
         >
           {[
             { Icon: SiPython, color: "#3776AB" },
@@ -136,14 +133,10 @@ export const Skills = () => {
           ].map(({ Icon, color }, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              whileHover={{ scale: 1.2, rotate: 5 }}
-              className="transition-transform duration-200"
+              whileHover={{ scale: 1.2 }}
+              className="transition-transform duration-300"
             >
-              <Icon size={48} style={{ color }} />
+              <Icon size={40} className="hover:filter-none" />
             </motion.div>
           ))}
         </motion.div>
@@ -151,3 +144,4 @@ export const Skills = () => {
     </section>
   );
 };
+

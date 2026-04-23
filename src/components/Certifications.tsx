@@ -36,9 +36,7 @@ const certifications = [
 
 export const Certifications = () => {
   return (
-    <section id="certifications" className="py-15 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/20 to-background" />
-
+    <section id="certifications" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -47,52 +45,47 @@ export const Certifications = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-           <h2 className="text-3xl sm:text-4xl md:text-5xl font-poppins font-bold mb-4">
-             <span className="bg-gradient-to-r from-accent to-primary-glow bg-clip-text text-transparent">Certifications</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
+            Global <span className="gold-text-gradient">Certifications</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-gold mx-auto" />
+          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {certifications.map((cert, index) => (
             <motion.div
               key={cert.title}
-              initial={{ opacity: 0, y: 30, rotateY: 90 }}
-              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative h-full"
-              style={{ perspective: "1000px" }}
+              className="group h-full"
             >
-              <motion.div
-                whileHover={{ rotateY: 10, scale: 1.03 }}
-                transition={{ duration: 0.4 }}
-                className="relative h-full bg-card/70 backdrop-blur-sm border border-border rounded-xl p-6 shadow-elegant hover:shadow-glow transition-all duration-300"
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                {/* Badge Effect */}
-                <div className="absolute top-4 right-4 p-2 bg-secondary/10 rounded-full">
-                  <Award style={{ color: "#D4AF37" }} size={24} />
+              <div className="glass-card h-full p-8 border-white/5 hover:border-accent/30 hover:bg-accent/5 transition-all duration-500 relative overflow-hidden">
+                <div className="flex justify-between items-start mb-6">
+                  <div className="p-3 bg-accent/10 rounded-xl">
+                    <Award className="text-accent" size={28} />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-accent bg-accent/10 px-3 py-1 rounded-full border border-accent/20">Verified</span>
                 </div>
 
                 <div className="space-y-4">
-                  <h3 className="text-xl font-poppins font-bold text-foreground pr-12">
+                  <h3 className="text-xl font-bold text-white group-hover:text-accent transition-colors leading-tight">
                     {cert.title}
                   </h3>
 
-                  <div className="flex items-center gap-2 text-amber-400 font-semibold">
-
-                    <span className="text-sm">{cert.issuer}</span>
+                  <div className="text-sm font-bold text-white/40 uppercase tracking-widest">
+                    {cert.issuer}
                   </div>
 
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-white/60 leading-relaxed">
                     {cert.description}
                   </p>
                 </div>
 
                 {/* Shine Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-secondary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              </div>
             </motion.div>
           ))}
         </div>
@@ -100,3 +93,4 @@ export const Certifications = () => {
     </section>
   );
 };
+

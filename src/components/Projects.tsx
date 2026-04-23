@@ -51,7 +51,7 @@ export const Projects = () => {
 
   const slideVariants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
+      x: direction > 0 ? 500 : -500,
       opacity: 0,
     }),
     center: {
@@ -59,7 +59,7 @@ export const Projects = () => {
       opacity: 1,
     },
     exit: (direction: number) => ({
-      x: direction < 0 ? 1000 : -1000,
+      x: direction < 0 ? 500 : -500,
       opacity: 0,
     }),
   };
@@ -77,9 +77,7 @@ export const Projects = () => {
   const currentProject = projects[currentIndex];
 
   return (
-    <section id="projects" className="py-8 md:py-30 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-card/20 via-background to-card/20" />
-
+    <section id="projects" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -88,10 +86,10 @@ export const Projects = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-poppins font-bold mb-4">
-            Featured <span className="bg-gradient-to-r from-accent to-primary-glow bg-clip-text text-transparent">Projects</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
+            Innovative <span className="gold-text-gradient">Solutions</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-gold mx-auto" />
+          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
         </motion.div>
 
         <div className="max-w-6xl mx-auto">
@@ -106,56 +104,69 @@ export const Projects = () => {
                 exit="exit"
                 transition={{
                   x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 },
+                  opacity: { duration: 0.4 },
                 }}
-                className="grid md:grid-cols-2 gap-8 items-center"
+                className="grid lg:grid-cols-2 gap-12 items-center"
               >
                 {/* Project Image */}
                 <motion.div
                   whileHover={{ scale: 1.02 }}
-                  className="relative rounded-2xl overflow-hidden shadow-elegant hover:shadow-glow transition-all duration-300"
+                  className="relative group aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]"
                 >
                   <img
                     src={currentProject.image}
                     alt={currentProject.title}
-                    className="w-full h-auto object-cover"
+                    className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <div className="flex flex-wrap gap-2">
+                      {currentProject.tech.slice(0, 3).map((t) => (
+                        <span key={t} className="px-3 py-1 bg-accent/20 backdrop-blur-md border border-accent/30 rounded-full text-[10px] font-bold text-accent uppercase tracking-widest">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </motion.div>
 
                 {/* Project Details */}
-                <div className="space-y-6">
+                <div className="space-y-8">
                   <div>
-                    <h3 className="text-3xl font-poppins font-bold mb-4 text-foreground">
+                    <motion.h3 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-3xl md:text-4xl font-bold text-white mb-4"
+                    >
                       {currentProject.title}
-                    </h3>
-                    <p className="text-xl text-secondary font-semibold mb-4 " style={{ color: "#D4AF37" }}>
+                    </motion.h3>
+                    <p className="text-xl font-medium text-accent/80 mb-6 italic">
                       {currentProject.description}
                     </p>
                   </div>
 
-                  <ul className="space-y-3">
-                    {currentProject.details.map((detail, index) => (
-                      <motion.li
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="flex items-start gap-3 text-foreground/90"
-                      >
-                        <span className="text-secondary mt-1">▸</span>
-                        <span className="flex-1">{detail}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
+                  <div className="glass-card p-6 border-white/5">
+                    <ul className="space-y-4">
+                      {currentProject.details.map((detail, index) => (
+                        <motion.li
+                          key={index}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className="flex items-start gap-3 text-white/70 text-sm md:text-base"
+                        >
+                          <span className="text-accent font-bold mt-1">/</span>
+                          <span>{detail}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
 
                   <div className="flex flex-wrap gap-2">
                     {currentProject.tech.map((tech) => (
                       <span
                         key={tech}
-                        className={`px-4 py-2 bg-accent/10 border border-accent/20 rounded-lg text-sm font-medium ${
-                          tech === "LangChain" ? "text-[#13B621]" : "text-accent"
-                        }`}
+                        className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-xs font-bold text-white/60 hover:border-accent/30 hover:text-accent transition-all cursor-default uppercase tracking-tighter"
                       >
                         {tech}
                       </span>
@@ -165,18 +176,16 @@ export const Projects = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Navigation Buttons */}
-            <div className="flex justify-center items-center gap-8 mt-12">
-              <Button
+            {/* Navigation Controls */}
+            <div className="flex justify-between items-center mt-16 px-4">
+              <button
                 onClick={() => paginate(-1)}
-                variant="outline"
-                size="icon"
-                className="w-12 h-12 rounded-full border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground shadow-elegant"
+                className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-accent hover:border-accent/50 hover:bg-accent/5 transition-all group"
               >
-                <ChevronLeft size={24} />
-              </Button>
+                <ChevronLeft size={28} className="group-hover:-translate-x-1 transition-transform" />
+              </button>
 
-              <div className="flex gap-2">
+              <div className="flex gap-3">
                 {projects.map((_, index) => (
                   <button
                     key={index}
@@ -184,23 +193,20 @@ export const Projects = () => {
                       setDirection(index > currentIndex ? 1 : -1);
                       setCurrentIndex(index);
                     }}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
-                        ? "bg-secondary w-8"
-                        : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                    className={`h-1.5 rounded-full transition-all duration-500 ${index === currentIndex
+                        ? "bg-accent w-12"
+                        : "bg-white/10 w-4 hover:bg-white/20"
                       }`}
-                    aria-label={`Go to project ${index + 1}`}
                   />
                 ))}
               </div>
 
-              <Button
+              <button
                 onClick={() => paginate(1)}
-                variant="outline"
-                size="icon"
-                className="w-12 h-12 rounded-full border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground shadow-elegant"
+                className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-accent hover:border-accent/50 hover:bg-accent/5 transition-all group"
               >
-                <ChevronRight size={24} />
-              </Button>
+                <ChevronRight size={28} className="group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
           </div>
         </div>
@@ -208,3 +214,4 @@ export const Projects = () => {
     </section>
   );
 };
+

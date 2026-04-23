@@ -70,46 +70,42 @@ const Counter = ({ end, label }: { end: number; label: string }) => {
 
 export const About = () => {
   return (
-    <section id="about" className="py-16 sm:py-20 md:py-24 lg:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
-      
+    <section id="about" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-poppins font-bold mb-4">
-            About <span className="bg-gradient-to-r from-accent to-primary-glow bg-clip-text text-transparent">Me</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
+            Pioneering <span className="gold-text-gradient">AI Frontiers</span>
           </h2>
-          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-accent to-primary-glow mx-auto" />
+          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 mb-12 md:mb-16">
+        <div className="grid lg:grid-cols-2 gap-12 mb-20">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-4 sm:space-y-6"
+            className="space-y-6"
           >
-            <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6 sm:p-8 shadow-elegant hover:shadow-glow transition-all">
-              <p className="text-base sm:text-lg leading-relaxed text-foreground/90">
-                I am an <span className="text-accent font-semibold">AI/ML Engineer</span> with over{" "}
-                <span className="text-accent font-semibold">5 years of experience</span> in system design and building 
-                production AI systems. I specialize in <span className="text-accent font-semibold">LLM engineering, Retrieval 
-                Augmented Generation (RAG)</span>, and agent-based AI workflows across complex enterprise environments.
+            <div className="glass-card p-8 border-accent/10 hover:border-accent/20 transition-all duration-500">
+              <p className="text-lg leading-relaxed text-white/80">
+                I am a dedicated <span className="text-accent font-bold">AI/ML Engineer</span> with over{" "}
+                <span className="text-accent font-bold">5 years of excellence</span> in architecting complex AI ecosystems. 
+                My focus lies at the intersection of <span className="text-white font-semibold">Generative AI, LLM Engineering</span>, and <span className="text-white font-semibold">Scalable MLOps</span>.
               </p>
             </div>
 
-            <div className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-6 sm:p-8 shadow-elegant hover:shadow-glow transition-all">
-              <p className="text-base sm:text-lg leading-relaxed text-foreground/90">
-                I focus on designing end-to-end machine learning pipelines using <span className="text-accent font-semibold">
-                PyTorch, HuggingFace, and LangChain</span>. My expertise in <span className="text-accent font-semibold">
-                MLOps and LLMOps</span> allows me to deploy scalable AI systems across AWS, Azure, and GCP, 
-                delivering measurable impact by optimizing model accuracy and system performance.
+            <div className="glass-card p-8 border-accent/10 hover:border-accent/20 transition-all duration-500">
+              <p className="text-lg leading-relaxed text-white/80">
+                From developing sophisticated <span className="text-accent">RAG frameworks</span> to orchestrating 
+                <span className="text-accent">multi-agent systems</span>, I specialize in transforming raw AI potential 
+                into production-ready enterprise solutions that drive meaningful business transformation.
               </p>
             </div>
           </motion.div>
@@ -119,7 +115,7 @@ export const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4"
+            className="grid grid-cols-2 sm:grid-cols-3 gap-4"
           >
             {highlights.map((item, index) => (
               <motion.div
@@ -128,11 +124,11 @@ export const About = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * index }}
-                whileHover={{ scale: 1.1, y: -5 }}
-                className="bg-card/60 backdrop-blur-sm border border-border rounded-xl p-4 sm:p-6 flex flex-col items-center justify-center gap-2 sm:gap-3 shadow-lg hover:shadow-glow transition-all duration-300 group"
+                whileHover={{ y: -5, backgroundColor: "rgba(255, 215, 0, 0.05)" }}
+                className="glass-card p-6 flex flex-col items-center justify-center gap-3 border-white/5 hover:border-accent/30 transition-all duration-300 group"
               >
-                <item.icon className="text-3xl sm:text-4xl transition-transform duration-300 group-hover:scale-110" style={{ color: item.color }} />
-                <span className="text-xs sm:text-sm font-medium text-center text-foreground/90">{item.label}</span>
+                <item.icon className="text-4xl group-hover:scale-110 transition-transform duration-500" style={{ color: item.color }} />
+                <span className="text-xs font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">{item.label}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -143,14 +139,15 @@ export const About = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 bg-card/60 backdrop-blur-sm border border-border rounded-2xl p-6 sm:p-8 md:p-12 shadow-elegant"
+          transition={{ duration: 0.8 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 glass-card p-12 border-accent/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]"
         >
           <Counter end={24000} label="Daily Executions" />
-          <Counter end={5} label="Years" />
+          <Counter end={5} label="Years Experience" />
           <Counter end={99} label="SLA Compliance" />
         </motion.div>
       </div>
     </section>
   );
 };
+

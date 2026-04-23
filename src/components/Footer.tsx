@@ -7,18 +7,18 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative py-12 overflow-hidden border-t border-border">
-      <div className="absolute inset-0 bg-gradient-to-t from-card/50 to-transparent" />
+    <footer className="relative py-16 overflow-hidden border-t border-white/5 bg-black">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(255,215,0,0.05),transparent_50%)]" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col items-center justify-center text-center space-y-6">
+        <div className="flex flex-col items-center justify-center text-center space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl font-poppins font-bold"
+            className="text-4xl font-bold"
           >
-            <span className="bg-gradient-gold bg-clip-text text-transparent">KARISHMA</span>
+            <span className="gold-text-gradient">KARISHMA</span>
           </motion.div>
 
           <motion.p
@@ -26,38 +26,54 @@ export const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-muted-foreground max-w-md"
+            className="text-white/40 max-w-md text-lg leading-relaxed"
           >
-            Engineering advanced AI systems and LLM solutions to drive enterprise innovation
+            Pushing the boundaries of what's possible with Generative AI and Machine Learning.
           </motion.p>
+
+          <div className="flex gap-6">
+            <FooterLink href="https://www.linkedin.com/in/karishmashaik0524/" label="LinkedIn" />
+            <FooterLink href="mailto:krishshaik7@gmail.com" label="Email" />
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="pt-6 border-t border-border w-full max-w-2xl"
+            className="pt-12 border-t border-white/5 w-full max-w-4xl"
           >
-            <p className="text-sm text-muted-foreground">
-              © 2026 Karishma Shaik – All Rights Reserved
+            <p className="text-xs uppercase tracking-[0.2em] text-white/20">
+              © 2026 Karishma Shaik – Crafted with Precision
             </p>
           </motion.div>
         </div>
 
         {/* Scroll to Top Button */}
         <motion.button
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.1, backgroundColor: "hsl(var(--accent))", color: "black" }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 p-4 bg-secondary text-secondary-foreground rounded-full shadow-gold hover:shadow-glow transition-all duration-300 z-50"
+          className="mx-auto mt-12 flex items-center justify-center w-12 h-12 rounded-full border border-white/10 text-white/40 transition-all duration-300"
           aria-label="Scroll to top"
         >
-          <ArrowUp size={24} />
+          <ArrowUp size={20} />
         </motion.button>
       </div>
     </footer>
   );
 };
+
+const FooterLink = ({ href, label }: { href: string; label: string }) => (
+  <a 
+    href={href} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="text-white/60 hover:text-accent text-sm uppercase tracking-widest font-medium transition-colors"
+  >
+    {label}
+  </a>
+);
+

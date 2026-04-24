@@ -72,9 +72,8 @@ export const Hero = () => {
                 <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Leading Generative AI Innovation</span>
               </motion.div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tighter">
-                <span className="text-white block">Karishma</span>
-                <span className="gold-gradient-text block mt-2">Shaik</span>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight tracking-tighter text-white">
+                Karishma Shaik
               </h1>
               
               <div className="text-xl sm:text-2xl font-bold mt-4 h-8">

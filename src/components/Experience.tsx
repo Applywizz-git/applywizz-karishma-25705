@@ -29,6 +29,7 @@ const experiences = [
       "Defined AI product architecture for connected vehicle analytics using TensorFlow and Vertex AI, reducing deployment timelines by 35%",
       "Benchmarked transformer models using evaluation metrics (MRR, NDCG), improving prediction accuracy by 30%",
       "Designed low-latency real-time inference architecture on AWS SageMaker for high-volume automotive data",
+      "Implemented A/B testing frameworks for predictive models, enabling data-driven validation of AI feature performance",
     ],
   },
   {
@@ -41,6 +42,7 @@ const experiences = [
       "Designed distributed data pipelines using PySpark on Databricks with Delta Lake, achieving 99.9% reliability",
       "Improved model accuracy by 30% through feature engineering pipelines for fraud detection and risk modeling",
       "Developed data architectures using Snowflake and PostgreSQL, enabling faster data access",
+      "Architected scalable vector databases for enterprise-wide search applications, improving information retrieval efficiency",
     ],
   },
   {
@@ -52,6 +54,8 @@ const experiences = [
     achievements: [
       "Built data pipelines using Python and SQL to prepare structured financial datasets, reducing preprocessing time by 30%",
       "Improved downstream model accuracy by 20% through data cleaning and anomaly detection",
+      "Engineered automated data validation scripts to ensure data integrity across multiple financial systems",
+      "Assisted in the deployment of cloud-based data warehouses, facilitating streamlined analytical reporting",
     ],
   },
   {
@@ -63,9 +67,12 @@ const experiences = [
     achievements: [
       "Built NLP classification models using PyTorch and BERT, improving classification accuracy by 18%",
       "Developed ensemble models using XGBoost and SMOTE, increasing F1-score by 22%",
+      "Designed and implemented custom data visualization tools to analyze model performance metrics",
+      "Conducted comprehensive literature reviews on state-of-the-art deep learning architectures for research projects",
     ],
   },
 ];
+
 
 export const Experience = () => {
   return (

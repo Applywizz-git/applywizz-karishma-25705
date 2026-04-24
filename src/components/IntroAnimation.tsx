@@ -26,33 +26,6 @@ export const IntroAnimation = () => {
           }}
           className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#000000] overflow-hidden"
         >
-          {/* Subtle Golden Sparks Background */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {[...Array(40)].map((_, i) => (
-              <motion.div
-                key={i}
-                initial={{ 
-                  opacity: 0, 
-                  scale: Math.random() * 0.5,
-                  x: Math.random() * 100 + "%", 
-                  y: Math.random() * 100 + "%" 
-                }}
-                animate={{ 
-                  opacity: [0, 1, 0],
-                  scale: [null, 1.2, 0],
-                  y: [null, "-=150"],
-                }}
-                transition={{ 
-                  duration: Math.random() * 2 + 1, 
-                  repeat: Infinity,
-                  delay: Math.random() * 2,
-                  ease: "easeOut"
-                }}
-                className="absolute w-[2px] h-[2px] bg-[#FFD700] rounded-full shadow-[0_0_8px_#FFD700]"
-              />
-            ))}
-          </div>
-
           {/* Golden Ambient Glare */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FFD700]/5 rounded-full blur-[150px]" />
 
@@ -74,18 +47,6 @@ export const IntroAnimation = () => {
                     className={`${char === " " ? "mr-6" : ""} relative`}
                   >
                     {char}
-                    {/* Glint effect on letters */}
-                    <motion.span
-                      initial={{ left: "-100%" }}
-                      animate={{ left: "200%" }}
-                      transition={{ 
-                        duration: 1.5, 
-                        delay: 1.5 + (index * 0.05),
-                        repeat: 1,
-                        repeatDelay: 0.5
-                      }}
-                      className="absolute top-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg] pointer-events-none"
-                    />
                   </motion.span>
                 ))}
               </motion.h1>

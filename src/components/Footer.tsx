@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Linkedin, Mail } from "lucide-react";
 
 export const Footer = () => {
   const scrollToTop = () => {
@@ -7,73 +7,64 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative py-16 overflow-hidden border-t border-white/5 bg-black">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(255,215,0,0.05),transparent_50%)]" />
-
+    <footer className="relative py-12 bg-black overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col items-center justify-center text-center space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl font-bold"
-          >
-            <span className="gold-text-gradient">KARISHMA</span>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-white/40 max-w-md text-lg leading-relaxed"
-          >
-            Pushing the boundaries of what's possible with Generative AI and Machine Learning.
-          </motion.p>
-
-          <div className="flex gap-6">
-            <FooterLink href="https://www.linkedin.com/in/karishmashaik0524/" label="LinkedIn" />
-            <FooterLink href="mailto:krishshaik7@gmail.com" label="Email" />
+        <div className="flex flex-col items-center">
+          {/* Social Icons */}
+          <div className="flex gap-6 mb-8">
+            <SocialIcon 
+              href="https://www.linkedin.com/in/karishmashaik0524/" 
+              icon={<Linkedin size={20} className="text-white/60 group-hover:text-accent transition-colors" />} 
+            />
+            <SocialIcon 
+              href="mailto:krishshaik7@gmail.com" 
+              icon={<Mail size={20} className="text-white/60 group-hover:text-accent transition-colors" />} 
+            />
           </div>
 
+          {/* Copyright Pill */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="pt-12 border-t border-white/5 w-full max-w-4xl"
+            className="px-6 py-2 rounded-full border border-accent/20 bg-accent/5 backdrop-blur-md shadow-[0_0_25px_rgba(255,215,0,0.1)] relative group"
           >
-            <p className="text-xs uppercase tracking-[0.2em] text-white/20">
-              © 2026 Karishma Shaik – Crafted with Precision
+            <div className="absolute inset-0 rounded-full bg-accent/5 blur-md group-hover:bg-accent/10 transition-colors" />
+            <p className="text-[10px] md:text-xs text-white/50 font-medium tracking-widest uppercase relative z-10">
+              © 2026 Karishma Shaik. All rights reserved.
             </p>
           </motion.div>
         </div>
 
-        {/* Scroll to Top Button */}
-        <motion.button
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          whileHover={{ scale: 1.1, backgroundColor: "hsl(var(--accent))", color: "black" }}
-          onClick={scrollToTop}
-          className="mx-auto mt-12 flex items-center justify-center w-12 h-12 rounded-full border border-white/10 text-white/40 transition-all duration-300"
-          aria-label="Scroll to top"
-        >
-          <ArrowUp size={20} />
-        </motion.button>
+        {/* Scroll to Top - Positioned Right */}
+        <div className="absolute right-6 md:right-12 bottom-12">
+          <motion.button
+            whileHover={{ scale: 1.1, backgroundColor: "hsl(var(--accent))", color: "black" }}
+            whileTap={{ scale: 0.9 }}
+            onClick={scrollToTop}
+            className="w-12 h-12 rounded-full border border-accent/30 flex items-center justify-center text-accent transition-all duration-300 bg-black shadow-[0_0_15px_rgba(255,215,0,0.2)] group"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp size={24} className="group-hover:-translate-y-1 transition-transform" />
+          </motion.button>
+        </div>
       </div>
     </footer>
+
+
   );
 };
 
-const FooterLink = ({ href, label }: { href: string; label: string }) => (
-  <a 
-    href={href} 
-    target="_blank" 
+const SocialIcon = ({ href, icon }: { href: string; icon: React.ReactNode }) => (
+  <motion.a
+    href={href}
+    target="_blank"
     rel="noopener noreferrer"
-    className="text-white/60 hover:text-accent text-sm uppercase tracking-widest font-medium transition-colors"
+    whileHover={{ scale: 1.1, borderColor: "hsl(var(--accent))" }}
+    whileTap={{ scale: 0.9 }}
+    className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center transition-all duration-300 hover:bg-accent/5 group"
   >
-    {label}
-  </a>
+    {icon}
+  </motion.a>
 );
 

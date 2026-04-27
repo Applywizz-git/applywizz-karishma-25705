@@ -51,7 +51,18 @@ export const Hero = () => {
   const skills = ["LLM Architectures", "RAG Systems", "Agentic AI Workflows", "Generative AI", "Machine Learning"];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-visible">
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-black">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/image.png" 
+          alt="Hero Background" 
+          className="w-full h-full object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black" />
+        <div className="absolute inset-0 bg-black/20" />
+      </div>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Text Content */}

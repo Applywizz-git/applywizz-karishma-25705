@@ -77,7 +77,7 @@ export const Header = () => {
             onClick={() => scrollToSection("#home")}
             className="text-2xl font-bold cursor-pointer group"
           >
-            <span className="gold-text-gradient tracking-tighter">KARISHMA</span>
+            <span className="gold-gradient-text tracking-tighter">KARISHMA</span>
 
           </motion.div>
 

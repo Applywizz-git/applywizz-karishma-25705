@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Send, Linkedin, Sparkles, Github, Twitter } from "lucide-react";
+import { Mail, Send, Linkedin, Sparkles, Github, Twitter, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -75,6 +75,18 @@ export const Contact = () => {
                   icon={<Mail className="text-black" size={24} />}
                   label="Direct Email"
                   value="krishshaik7@gmail.com"
+                />
+                <ContactLink
+                  href="tel:+14695866952"
+                  icon={<Phone className="text-black" size={24} />}
+                  label="Phone"
+                  value="+1 (469) 586-6952"
+                />
+                <ContactLink
+                  href="#"
+                  icon={<MapPin className="text-black" size={24} />}
+                  label="Location"
+                  value="Open to Relocate"
                 />
                 <ContactLink
                   href="https://www.linkedin.com/in/karishmashaik0524/"

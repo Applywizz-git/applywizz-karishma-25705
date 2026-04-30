@@ -77,8 +77,8 @@ export const Header = () => {
             onClick={() => scrollToSection("#home")}
             className="text-2xl font-bold cursor-pointer group"
           >
-            <span className="gold-text-gradient tracking-tighter">KARISHMA</span>
-            <span className="text-white/40 group-hover:text-accent transition-colors ml-1">.AI</span>
+            <span className="gold-gradient-text tracking-tighter">KARISHMA</span>
+
           </motion.div>
 
           {/* Desktop Nav */}

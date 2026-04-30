@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Send, Linkedin, Sparkles, Github, Twitter } from "lucide-react";
+import { Mail, Send, Linkedin, Sparkles, Github, Twitter, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -16,7 +16,7 @@ export const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     await new Promise((resolve) => setTimeout(resolve, 1500));
-    
+
     confetti({
       particleCount: 150,
       spread: 100,
@@ -42,7 +42,7 @@ export const Contact = () => {
       <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 items-start">
-            
+
             {/* Left: Interactive Contact Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -59,24 +59,36 @@ export const Contact = () => {
                   <Sparkles size={14} className="text-accent" />
                   <span className="text-xs font-bold uppercase tracking-widest text-accent/80">Open for Collaboration</span>
                 </motion.div>
-                
+
                 <h2 className="text-5xl md:text-7xl font-black text-white leading-none">
                   Let's Build the <span className="gold-gradient-text italic">Future.</span>
                 </h2>
-                
+
                 <p className="text-xl text-white/50 leading-relaxed max-w-md">
                   Whether it's a revolutionary RAG system or an autonomous agentic framework, I'm ready to bring your vision to life.
                 </p>
               </div>
 
               <div className="space-y-8">
-                <ContactLink 
+                <ContactLink
                   href="mailto:krishshaik7@gmail.com"
                   icon={<Mail className="text-black" size={24} />}
                   label="Direct Email"
                   value="krishshaik7@gmail.com"
                 />
-                <ContactLink 
+                <ContactLink
+                  href="tel:+14695866952"
+                  icon={<Phone className="text-black" size={24} />}
+                  label="Phone"
+                  value="+1 (469) 586-6952"
+                />
+                <ContactLink
+                  href="#"
+                  icon={<MapPin className="text-black" size={24} />}
+                  label="Location"
+                  value="Open to Relocate"
+                />
+                <ContactLink
                   href="https://www.linkedin.com/in/karishmashaik0524/"
                   icon={<Linkedin className="text-black" size={24} />}
                   label="Professional Network"
@@ -85,8 +97,8 @@ export const Contact = () => {
               </div>
 
               <div className="flex gap-4 pt-4">
-                <SocialIcon href="https://github.com" icon={<Github size={20} />} />
-                <SocialIcon href="https://twitter.com" icon={<Twitter size={20} />} />
+                {/* <SocialIcon href="https://github.com" icon={<Github size={20} />} /> */}
+                {/* <SocialIcon href="https://twitter.com" icon={<Twitter size={20} />} /> */}
               </div>
             </motion.div>
 
@@ -99,7 +111,7 @@ export const Contact = () => {
             >
               {/* Form Glow Background */}
               <div className="absolute -inset-4 bg-accent/5 rounded-[40px] blur-3xl" />
-              
+
               <div className="glass-panel p-8 md:p-12 relative border-white/5 shadow-2xl">
                 <form onSubmit={handleSubmit} className="space-y-8">
                   <div className="grid md:grid-cols-2 gap-8">
@@ -167,7 +179,7 @@ export const Contact = () => {
 
 
 const ContactLink = ({ href, icon, label, value }: { href: string; icon: React.ReactNode; label: string; value: string }) => (
-  <motion.a 
+  <motion.a
     href={href}
     target="_blank"
     rel="noopener noreferrer"
